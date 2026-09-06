@@ -21,7 +21,7 @@ export function Production() {
       as="section"
       id={section.id}
       aria-labelledby="production-heading"
-      className="pt-28 sm:pt-36 lg:pt-44"
+      className="pt-16 sm:pt-20 lg:pt-24"
     >
       <SectionHeader section={section} meta="After the code" />
 

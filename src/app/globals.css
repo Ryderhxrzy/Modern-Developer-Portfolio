@@ -308,6 +308,17 @@
   animation: stage-in 0.7s var(--ease-out-expo) both;
 }
 
+/* Ruler ticks: a tall tick every 10%, short ticks every 2.5%. */
+.ruler {
+  background-image:
+    repeating-linear-gradient(to right, var(--line-strong) 0 1px, transparent 1px 10%),
+    repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 2.5%);
+  background-size:
+    100% 8px,
+    100% 4px;
+  background-repeat: no-repeat;
+}
+
 /* ------------------------------------------------------------------
    Opening curtain: an ink panel that wipes upward on the first visit
    of a session. The bootstrap script sets data-curtain="off" on <html>

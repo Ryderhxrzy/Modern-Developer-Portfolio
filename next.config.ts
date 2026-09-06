@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // Placeholder imagery. Add or replace hosts when real project images
-    // are hosted elsewhere, or move them into /public and drop this.
+    // Project images live in /public/projects. Add a host here if real
+    // screenshots are served from a CDN or image service instead.
     remotePatterns: [
       {
         protocol: "https",

@@ -12,14 +12,14 @@ const section = sections[7];
  */
 export function Contact() {
   const { heading, subheading, email, socials } = profile.contact;
-  const [firstWords, lastWord] = splitLastWord(heading);
+  const [lineOne, lineTwo, lastWord] = splitHeading(heading);
 
   return (
     <Container
       as="section"
       id={section.id}
       aria-labelledby="contact-heading"
-      className="pt-28 sm:pt-36 lg:pt-44"
+      className="pt-16 sm:pt-20 lg:pt-24"
     >
       <SectionHeader
         section={section}
@@ -29,8 +29,9 @@ export function Contact() {
       <div className="mt-12 lg:mt-20">
         <Reveal variant="lines" threshold={0.1}>
           <h2 id="contact-heading" className="display-xl text-ink">
-            <RevealLine delay={100}>{firstWords}</RevealLine>
+            <RevealLine delay={100}>{lineOne}</RevealLine>
             <RevealLine delay={220} className="lg:ml-[0.6em]">
+              {lineTwo ? <>{lineTwo} </> : null}
               <span className="serif-italic text-ink-muted">{lastWord}</span>
             </RevealLine>
           </h2>
@@ -90,8 +91,12 @@ export function Contact() {
   );
 }
 
-function splitLastWord(text: string): [string, string] {
+/**
+ * Splits "Have something to build?" into two display lines:
+ * "Have something" and "to build?", with the final word set in serif.
+ */
+function splitHeading(text: string): [string, string, string] {
   const words = text.trim().split(" ");
-  if (words.length < 2) return [text, ""];
-  return [words.slice(0, -1).join(" "), words[words.length - 1]];
+  if (words.length < 3) return [words.slice(0, -1).join(" "), "", words[words.length - 1] ?? ""];
+  return [words.slice(0, -2).join(" "), words[words.length - 2], words[words.length - 1]];
 }

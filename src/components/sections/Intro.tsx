@@ -68,6 +68,7 @@ export function Intro() {
         {/* Status strip along the bottom rule */}
         <div className="mt-auto pt-16 sm:pt-20">
           <Reveal variant="rule" className="h-px w-full bg-line-strong" delay={700} delayVar="--intro-offset" />
+          <Reveal className="ruler h-2 w-full" delay={780} delayVar="--intro-offset" />
           <Reveal
             className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between"
             delay={820} delayVar="--intro-offset"

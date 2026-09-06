@@ -120,7 +120,9 @@ export function SiteNav() {
               <span>{current.label}</span>
               <span className="text-ink-faint">/ {total}</span>
             </p>
-            <ThemeToggle className="hidden lg:inline-flex" />
+            <div className="hidden lg:block">
+              <ThemeToggle />
+            </div>
             <button
               ref={menuButton}
               type="button"

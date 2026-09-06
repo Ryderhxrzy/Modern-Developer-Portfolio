@@ -12,7 +12,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-28 overflow-hidden sm:mt-36 lg:mt-44">
+    <footer className="mt-16 overflow-hidden sm:mt-20 lg:mt-24">
       <Container>
         <Reveal variant="lines" threshold={0.2}>
           <p

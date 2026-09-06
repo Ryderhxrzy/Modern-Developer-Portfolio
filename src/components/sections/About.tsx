@@ -18,7 +18,7 @@ export function About() {
       as="section"
       id={section.id}
       aria-labelledby="about-heading"
-      className="pt-28 sm:pt-36 lg:pt-44"
+      className="pt-16 sm:pt-20 lg:pt-24"
     >
       <SectionHeader section={section} meta={profile.fullName} />
 

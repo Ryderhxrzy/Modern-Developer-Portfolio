@@ -17,7 +17,7 @@ export function Capabilities() {
       as="section"
       id={section.id}
       aria-labelledby="capabilities-heading"
-      className="pt-28 sm:pt-36 lg:pt-44"
+      className="pt-16 sm:pt-20 lg:pt-24"
     >
       <SectionHeader
         section={section}
@@ -59,7 +59,7 @@ export function Capabilities() {
                 <h3 className="display-sm text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] lg:group-hover:translate-x-2">
                   {capability.title}
                 </h3>
-                <p className="label mt-4 leading-relaxed text-ink-faint">
+                <p className="label mt-4 leading-relaxed text-ink-muted">
                   {capability.tools.join(" / ")}
                 </p>
               </div>

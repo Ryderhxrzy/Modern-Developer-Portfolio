@@ -19,7 +19,7 @@ export function TechIndex() {
       as="section"
       id={section.id}
       aria-labelledby="stack-heading"
-      className="pt-28 sm:pt-36 lg:pt-44"
+      className="pt-16 sm:pt-20 lg:pt-24"
     >
       <SectionHeader section={section} meta={`${total} entries`} />
 
@@ -67,7 +67,7 @@ export function TechIndex() {
                   </li>
                 ))}
               </ul>
-              <ul className="label mt-4 flex flex-wrap gap-x-4 gap-y-2 leading-relaxed text-ink-faint">
+              <ul className="label mt-4 flex flex-wrap gap-x-4 gap-y-2 leading-relaxed text-ink-muted">
                 {group.secondary.map((item) => (
                   <li key={item}>{item}</li>
                 ))}

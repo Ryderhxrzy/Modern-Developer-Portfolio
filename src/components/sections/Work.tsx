@@ -19,7 +19,7 @@ export function Work() {
       as="section"
       id={section.id}
       aria-labelledby="work-heading"
-      className="pt-28 sm:pt-36 lg:pt-44"
+      className="pt-16 sm:pt-20 lg:pt-24"
     >
       <SectionHeader
         section={section}
@@ -40,7 +40,7 @@ export function Work() {
         </Reveal>
       </div>
 
-      <div className="mt-20 flex flex-col gap-28 sm:mt-28 sm:gap-36 lg:mt-36 lg:gap-48">
+      <div className="mt-16 flex flex-col gap-20 sm:mt-20 sm:gap-24 lg:mt-24 lg:gap-32">
         {projects.map((project, index) => (
           <ProjectEntry key={project.id} project={project} isFirst={index === 0} />
         ))}

@@ -1,7 +1,9 @@
 /**
  * Selected work. Replace the placeholder images and copy with real
- * project details. Images can be remote URLs (add the host to
- * next.config.ts) or files under /public.
+ * project details. The current images are generated wireframe
+ * placeholders in /public/projects. Drop real screenshots in the same
+ * folder (or use a remote URL and add its host to next.config.ts) and
+ * update `src`, `width` and `height` below.
  */
 
 export type ProjectImage = {
@@ -62,8 +64,8 @@ export const projects: Project[] = [
     year: "2024 – 2025",
     layout: "wide",
     image: {
-      src: "https://picsum.photos/seed/afhome-portfolio/1800/1125",
-      alt: "AF Home mobile and web interface placeholder",
+      src: "/projects/af-home.png",
+      alt: "Wireframe placeholder for the AF Home mobile app and website",
       width: 1800,
       height: 1125,
     },
@@ -85,8 +87,8 @@ export const projects: Project[] = [
     year: "2024",
     layout: "tall",
     image: {
-      src: "https://picsum.photos/seed/crimemap-portfolio/1200/1500",
-      alt: "Crime analytics mapping dashboard placeholder",
+      src: "/projects/crime-analytics.png",
+      alt: "Wireframe placeholder for the crime analytics map and dashboard",
       width: 1200,
       height: 1500,
     },
@@ -108,8 +110,8 @@ export const projects: Project[] = [
     year: "2025",
     layout: "split",
     image: {
-      src: "https://picsum.photos/seed/merchant-portfolio/1600/1200",
-      alt: "Merchant management mobile application placeholder",
+      src: "/projects/merchant-app.png",
+      alt: "Wireframe placeholder for the merchant management mobile app",
       width: 1600,
       height: 1200,
     },

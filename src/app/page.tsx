@@ -32,7 +32,7 @@ export default function Home() {
     <>
       <ScrollProgress />
       <SiteNav />
-      <main id="main" className="flex-1 pb-8">
+      <main id="main" className="flex-1">
         <Intro />
         <Capabilities />
         <Work />
