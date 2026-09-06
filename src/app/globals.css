@@ -1,0 +1,527 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Theme tokens
+   Light: warm off-white paper with near-black ink.
+   Dark:  near-black with soft, slightly warm white.
+   One accent ("ember") used sparingly for status, indices and focus.
+   ------------------------------------------------------------------ */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f3f0ea;
+  --bg-raised: #ebe7df;
+  --bg-sunken: #e4dfd5;
+
+  --ink: #17150f;
+  --ink-muted: #56514a;
+  --ink-faint: #948d82;
+
+  --line: #d9d3c7;
+  --line-strong: #17150f;
+
+  --accent: #c4451c;
+  --accent-soft: rgba(196, 69, 28, 0.12);
+
+  --image-tint: rgba(23, 21, 15, 0.06);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #111110;
+  --bg-raised: #171716;
+  --bg-sunken: #0c0c0b;
+
+  --ink: #ebe7df;
+  --ink-muted: #a29b90;
+  --ink-faint: #6b665d;
+
+  --line: #2a2926;
+  --line-strong: #ebe7df;
+
+  --accent: #e0673f;
+  --accent-soft: rgba(224, 103, 63, 0.16);
+
+  --image-tint: rgba(0, 0, 0, 0.18);
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Fluid display sizes used for editorial headlines. */
+  --text-display-xl: clamp(3.25rem, 11.5vw, 11rem);
+  --text-display-lg: clamp(2.5rem, 7vw, 6.5rem);
+  --text-display-md: clamp(2rem, 4.5vw, 4.25rem);
+  --text-display-sm: clamp(1.5rem, 2.8vw, 2.5rem);
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11", "kern";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilities
+   ------------------------------------------------------------------ */
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility label-lg {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility display-xl {
+  font-size: var(--text-display-xl);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+
+@utility display-lg {
+  font-size: var(--text-display-lg);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+}
+
+@utility display-md {
+  font-size: var(--text-display-md);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+@utility display-sm {
+  font-size: var(--text-display-sm);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+@utility serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@utility hairline-t {
+  border-top: 1px solid var(--line);
+}
+
+@utility hairline-b {
+  border-bottom: 1px solid var(--line);
+}
+
+/* Underline that draws in from the left on hover. */
+@utility link-draw {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.5s var(--ease-out-expo);
+}
+
+@utility link-draw-active {
+  background-size: 100% 1px;
+}
+
+/* ------------------------------------------------------------------
+   Motion: scroll reveal
+   ------------------------------------------------------------------ */
+
+.reveal {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 0.9s var(--ease-out-expo) var(--reveal-delay),
+    transform 0.9s var(--ease-out-expo) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Horizontal rule that draws from left to right when revealed. */
+.rule-draw {
+  --reveal-delay: 0ms;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.2s var(--ease-out-expo) var(--reveal-delay);
+}
+
+.rule-draw.is-visible {
+  transform: scaleX(1);
+}
+
+/* Masked text reveal: each line or word sits inside an overflow-hidden
+   span. Padding keeps descenders (g, y, p) from being clipped by the
+   tight display line-height; the negative margin cancels the layout. */
+.line-reveal {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
+
+.line-reveal > span {
+  display: block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 1.1s var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+
+.is-visible .line-reveal > span {
+  transform: none;
+}
+
+.word-reveal {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
+
+.word-reveal > span {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 1s var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+
+.is-visible .word-reveal > span {
+  transform: none;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-soft);
+  }
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+.status-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* Used by the Development Spectrum readout when the stage changes. */
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.12em, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stage-in {
+  animation: stage-in 0.7s var(--ease-out-expo) both;
+}
+
+/* ------------------------------------------------------------------
+   Opening curtain: an ink panel that wipes upward on the first visit
+   of a session. The bootstrap script sets data-curtain="off" on <html>
+   when it has already been seen, so it never flashes on reloads.
+   ------------------------------------------------------------------ */
+
+@keyframes curtain-up {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes curtain-label {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  30%,
+  70% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: var(--ink);
+  color: var(--bg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1.5rem;
+  pointer-events: none;
+  animation: curtain-up 1s var(--ease-in-out-quart) 0.9s both;
+}
+
+.curtain > * {
+  animation: curtain-label 1.4s ease both;
+}
+
+html[data-curtain="off"] .curtain {
+  display: none;
+}
+
+/* The intro waits for the curtain on a first visit, not on reloads. */
+:root {
+  --intro-offset: 1100ms;
+}
+
+html[data-curtain="off"] {
+  --intro-offset: 0ms;
+}
+
+/* ------------------------------------------------------------------
+   Ticker strip
+   ------------------------------------------------------------------ */
+
+@keyframes ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.ticker-track {
+  animation: ticker 40s linear infinite;
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* ------------------------------------------------------------------
+   Cursor ring (fine pointers only). Follows the pointer with a little
+   lag and grows over interactive elements.
+   ------------------------------------------------------------------ */
+
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 90;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0) scale(1);
+  transition:
+    opacity 0.3s ease,
+    width 0.3s var(--ease-out-expo),
+    height 0.3s var(--ease-out-expo),
+    margin 0.3s var(--ease-out-expo),
+    background-color 0.3s ease;
+  will-change: transform;
+}
+
+.cursor-ring.is-active {
+  opacity: 0.9;
+}
+
+.cursor-ring.is-hover {
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  background-color: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.cursor-ring.is-down {
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+}
+
+@media (pointer: coarse) {
+  .cursor-ring {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Grain: a very faint noise layer that gives the paper some texture.
+   ------------------------------------------------------------------ */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+[data-theme="dark"] .grain {
+  opacity: 0.07;
+  mix-blend-mode: screen;
+}
+
+/* ------------------------------------------------------------------
+   Back-to-top button
+   ------------------------------------------------------------------ */
+
+.to-top {
+  transform: translate3d(0, 12px, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s var(--ease-out-expo),
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.to-top.is-visible {
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .rule-draw,
+  .line-reveal > span {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .word-reveal > span {
+    transform: none;
+    transition: none;
+  }
+
+  .status-dot,
+  .stage-in,
+  .ticker-track {
+    animation: none;
+  }
+
+  .curtain,
+  .cursor-ring {
+    display: none;
+  }
+
+  :root {
+    --intro-offset: 0ms;
+  }
+
+  .to-top {
+    transition: none;
+  }
+
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
