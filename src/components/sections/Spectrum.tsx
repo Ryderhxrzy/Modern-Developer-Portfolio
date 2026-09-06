@@ -87,7 +87,7 @@ export function Spectrum() {
       ref={sectionRef}
       id={section.id}
       aria-labelledby="spectrum-heading"
-      className="relative mt-16 sm:mt-20 lg:mt-24 lg:h-[260vh]"
+      className="relative mt-16 sm:mt-20 lg:mt-24 lg:h-[220vh]"
     >
       <div className="lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col">
         <Container className="flex flex-1 flex-col pt-0 lg:pt-20">

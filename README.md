@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jhay-R Cervantes — Portfolio
 
-## Getting Started
+Personal portfolio built with Next.js 16, React 19, TypeScript and Tailwind CSS v4. Fully static, no backend.
 
-First, run the development server:
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run start    # serve the production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Update content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All copy and links live in `src/data`. The components only render what is there.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| File | What it controls |
+| --- | --- |
+| `src/data/profile.ts` | Name, role, intro text, availability, about text, current roles, email and social links |
+| `src/data/projects.ts` | Selected work: titles, descriptions, tags, layout (`wide`, `tall`, `split`) and images |
+| `src/data/capabilities.ts` | "What I Build" areas, the Development Spectrum stages, and the Production section |
+| `src/data/skills.ts` | Technology index groups |
+| `src/data/site.ts` | Section list, navigation labels, site URL and SEO metadata |
 
-## Learn More
+### Replacing project images
 
-To learn more about Next.js, take a look at the following resources:
+Put screenshots in `public/projects/` and update `src`, `width` and `height` for that project in `src/data/projects.ts`. The current files there are generated wireframe placeholders. For images hosted elsewhere, add the host to `images.remotePatterns` in `next.config.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Deploying
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Set `siteConfig.url` in `src/data/site.ts` to the live domain before deploying. It is used for canonical and Open Graph URLs. The Open Graph image is generated at build time from `src/app/opengraph-image.tsx`.
 
-## Deploy on Vercel
+## Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+  app/            layout, page, global styles, Open Graph image
+  components/
+    layout/       navigation rail and menu, scroll progress, theme toggle, curtain, cursor ring, back to top, footer
+    sections/     one file per numbered section (01 Intro … 08 Contact)
+    ui/           reusable pieces: Container, Reveal animations, SectionHeader, ProjectFigure, Ticker, LocalTime
+  data/           all portfolio content
+  lib/            small helpers
+public/projects/  project images
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design notes
+
+- Light theme: warm off-white paper with near-black ink. Dark theme: near-black with soft white. One accent colour, used sparingly.
+- Fonts: Instrument Sans (text and display), Instrument Serif italic (accents), JetBrains Mono (labels and numbers).
+- All motion respects `prefers-reduced-motion`. The opening curtain plays once per browser session.
