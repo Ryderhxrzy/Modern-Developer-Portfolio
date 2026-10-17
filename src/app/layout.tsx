@@ -7,6 +7,7 @@ import { CursorRing } from "@/components/layout/CursorRing";
 import { IntroCurtain } from "@/components/layout/IntroCurtain";
 import { profile } from "@/data/profile";
 import { siteConfig } from "@/data/site";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <CursorRing />
         <div className="grain" aria-hidden="true" />
+        <Analytics />
       </body>
     </html>
   );
