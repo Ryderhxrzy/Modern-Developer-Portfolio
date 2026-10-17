@@ -51,7 +51,7 @@ export const navItems: NavItem[] = sections.map((section) => ({
 
 export const siteConfig = {
   /** Update this to the deployed domain. Used for canonical + Open Graph URLs. */
-  url: "https://jhayrcervantes.dev",
+  url: "https://jhayr.dev",
   title: `${profile.fullName} — ${profile.role}`,
   titleTemplate: `%s — ${profile.fullName}`,
   description: `${profile.fullName} is a ${profile.role.toLowerCase()} who builds, deploys, publishes and troubleshoots complete software products across web, backend, mobile, infrastructure and production.`,
