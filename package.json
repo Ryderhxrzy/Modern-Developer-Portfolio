@@ -1,7 +1,30 @@
 {
-  "name": "jhayr-portfolio",
+  "name": "modern-developer-portfolio",
   "version": "0.1.0",
-  "private": true,
+  "description": "An editorial, high-performance developer portfolio template built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ryderhxrzy/Modern-Developer-Portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ryderhxrzy/Modern-Developer-Portfolio/issues"
+  },
+  "homepage": "https://github.com/Ryderhxrzy/Modern-Developer-Portfolio#readme",
+  "keywords": [
+    "portfolio",
+    "developer-portfolio",
+    "portfolio-template",
+    "nextjs",
+    "nextjs16",
+    "react19",
+    "tailwindcss",
+    "tailwindcss-v4",
+    "typescript",
+    "dark-mode",
+    "editorial-design",
+    "open-source"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
